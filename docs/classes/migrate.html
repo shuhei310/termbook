@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./../assets/css/combined.css?20180417">
+	<link rel="shortcut icon" href="./../favicon.ico" />
+	<script src="https://www.google.com/jsapi" type="text/javascript"></script>
+	<script type="text/javascript">
+		var path = './../';
+		var class_prefix = "Migrate::";
+	</script>
+	<script src="./../assets/js/combined.js?20180417"></script>
+	<title>Migrate - Classes - FuelPHP Documentation</title>
+</head>
+<body>
+	<div id="container">
+		<header id="header">
+			<div class="table">
+				<div id="cse">
+					<gcse:searchbox-only newWindow="true"></gcse:searchbox-only>
+				</div>
+				<h1>
+					<a href="https://fuelphp.com"><img height="37px" width="147px" src="./../assets/img/fuel.png" /></a>
+					<strong>Documentation</strong>
+				</h1>
+			</div>
+			<nav>
+				<div class="clear"></div>
+			</nav>
+			<a href="#" id="toc_handle">table of contents</a>
+			<div class="clear"></div>
+		</header>
+
+		<div id="main">
+
+			<h2>Migrate Class</h2>
+
+			<p>
+				The migrate class allows you to run, walk through and revert <a href="../general/migrations.html">Migrations</a> from your controllers.
+				Migrations are supported in the application, in modules and in packages.
+			</p>
+
+			<article>
+				<h4 class="method" id="method_current">current($name = 'default', $type = 'app')</h4>
+				<p>Migrates to the current schema set in the migration configuration file.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th>Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th>Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$name</kbd></th>
+									<td><pre class="php"><code>'default'</code></pre></td>
+									<td>Name of the package or module. In case of app, 'default' is used.</td>
+								</tr>
+								<tr>
+									<th><kbd>$type</kbd></th>
+									<td><pre class="php"><code>'app'</code></pre></td>
+									<td>Type of migration. Valid values are 'app', 'module' and 'package'.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>array</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// run the migrations of the application, up to the current schema.
+Migrate::current('default', 'app');
+</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_latest">latest($name = 'default', $type = 'app')</h4>
+				<p>Migrates to the latest schema set in the migration config.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th>Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th>Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$name</kbd></th>
+									<td><pre class="php"><code>'default'</code></pre></td>
+									<td>Name of the package or module. In case of app, 'default' is used.</td>
+								</tr>
+								<tr>
+									<th><kbd>$type</kbd></th>
+									<td><pre class="php"><code>'app'</code></pre></td>
+									<td>Type of migration. Valid values are 'app', 'module' and 'package'.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>array</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// run the migrations of the 'mypackage' package, up to the latest schema.
+Migrate::latest('mypackage', 'package');
+</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_version">version($version, $name = 'default', $type = 'app')</h4>
+				<p>The <strong>version</strong> method will move the migrations up or down to set the schema at a specific migration version.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th>Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th>Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$version</kbd></th>
+									<td><i>required</i></td>
+									<td>The version you are migrating to. If you specify <strong>null</strong>, it will migrate to the latest version.</td>
+								</tr>
+								<tr>
+									<th><kbd>$name</kbd></th>
+									<td><pre class="php"><code>'default'</code></pre></td>
+									<td>Name of the package or module. In case of app, 'default' is used.</td>
+								</tr>
+								<tr>
+									<th><kbd>$type</kbd></th>
+									<td><pre class="php"><code>'app'</code></pre></td>
+									<td>Type of migration. Valid values are 'app', 'module' and 'package'.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>array</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// migrate the module 'mymodule' to version 10
+Migrate::version(10, 'mymodule', 'module');
+</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_up">up($version, $name = 'default', $type = 'app')</h4>
+				<p>The <strong>version</strong> method will move the migrations up by one, or up to a specific version if given.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th>Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th>Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$version</kbd></th>
+									<td><i>required</i></td>
+									<td>The version you want to migrating up to. If you specify <strong>null</strong>, it will migrate up to the next version.</td>
+								</tr>
+								<tr>
+									<th><kbd>$name</kbd></th>
+									<td><pre class="php"><code>'default'</code></pre></td>
+									<td>Name of the package or module. In case of app, 'default' is used.</td>
+								</tr>
+								<tr>
+									<th><kbd>$type</kbd></th>
+									<td><pre class="php"><code>'app'</code></pre></td>
+									<td>Type of migration. Valid values are 'app', 'module' and 'package'.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>array</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// migrate the module 'mymodule' up to version 10
+Migrate::up(10, 'mymodule', 'module');
+</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article>
+				<h4 class="method" id="method_down">down($version, $name = 'default', $type = 'app')</h4>
+				<p>The <strong>version</strong> method will move the migrations down by one, or down to a specific version if given.</p>
+				<table class="method">
+					<tbody>
+					<tr>
+						<th>Static</th>
+						<td>Yes</td>
+					</tr>
+					<tr>
+						<th>Parameters</th>
+						<td>
+							<table class="parameters">
+								<tr>
+									<th>Param</th>
+									<th>Default</th>
+									<th>Description</th>
+								</tr>
+								<tr>
+									<th><kbd>$version</kbd></th>
+									<td><i>required</i></td>
+									<td>The version you want to migrating down to. If you specify <strong>null</strong>, it will migrate down to the next version.</td>
+								</tr>
+								<tr>
+									<th><kbd>$name</kbd></th>
+									<td><pre class="php"><code>'default'</code></pre></td>
+									<td>Name of the package or module. In case of app, 'default' is used.</td>
+								</tr>
+								<tr>
+									<th><kbd>$type</kbd></th>
+									<td><pre class="php"><code>'app'</code></pre></td>
+									<td>Type of migration. Valid values are 'app', 'module' and 'package'.</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<th>Returns</th>
+						<td>array</td>
+					</tr>
+					<tr>
+						<th>Example</th>
+						<td>
+							<pre class="php"><code>// migrate the module 'mymodule' down to version 10
+Migrate::down(10, 'mymodule', 'module');
+</code></pre>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<p class="note">
+				All methods return an array, specifying a list a migration files ( file names only! ) executed.<br />
+				If no migrations where found, or if the version specified resulted in no migrations being executed, the array returned is empty.
+			</p>
+
+		</div>
+
+		<footer>
+			<p>
+				&copy; FuelPHP Development Team 2010-2018 - <a href="https://fuelphp.com">FuelPHP</a> is released under the MIT license.
+			</p>
+		</footer>
+	</div>
+</body>
+</html>
