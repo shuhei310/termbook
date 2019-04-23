@@ -117,19 +117,18 @@ class Model_Update extends Model
 	public static function get_update_form($term_id)
 	{
 		if ($term_id) {
-			$terms       = Model_Detail::get_term_data($term_id)[0];
-			$terms_array = Model_Detail::get_term_data($term_id);
-			if (!$terms) {
+			$terms = Model_Detail::get_term_data($term_id);
+			if ($terms === null) {
 				throw new HttpInvalidINputException('不正な値が入力されました。');
 			}
 		} else {
 			throw new HttpInvalidINputException('不正な遷移です。');
 		}
-		$reference_count = count($terms_array);
+		$reference_count = count($terms);
 		for ($i = 0; $i < $reference_count; ++$i) {
-			$terms['reference' . $i] = $terms_array[$i]['reference'];
+			$terms[0]['reference' . $i] = $terms[$i]['reference'];
 		}
-		return $terms;
+		return $terms[0];
 	}
 
 	/**

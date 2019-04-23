@@ -25,7 +25,7 @@ class Model_List extends Model
 	 * 用語名と略語に対して完全一致検索を行う
 	 *
 	 * @param  string $word
-	 * @return assco
+	 * @return assoc
 	 */
 	public static function get_query_perfect_search($word)
 	{
@@ -72,9 +72,11 @@ class Model_List extends Model
 	 */
 	public static function check_get_sort($key)
 	{
-		if ($key !== 'update_date' && $key !== 'create_date' && $key !== 'term_name') {
-			return false;
+		if ($key === 'update_date' && $key === 'create_date' && $key === 'term_name') {
+			return true;
 		}
-		return true;
+		else {
+			return false;	
+		}
 	}
 }
